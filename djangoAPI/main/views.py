@@ -9,6 +9,17 @@ logger = logging.getLogger(__name__)
 
 class MockItemViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
+        """
+        The list function merges data from two external APIs based on customer_id.
+            The merged data is returned in the following format:
+        
+        :param self: Represent the instance of the class
+        :param request: Access the request object
+        :param *args: Send a non-keyworded variable length argument list to the function
+        :param **kwargs: Pass keyworded, variable-length argument list
+        :return: A dictionary
+        :doc-author: Trelent
+        """
         try:
             res_1 = requests.get(url=MockEndpointsEnum.mock1_url.value)
             res_2 = requests.get(url=MockEndpointsEnum.mock2_url.value)
